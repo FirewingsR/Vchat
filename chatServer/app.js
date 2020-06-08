@@ -27,7 +27,10 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(compression());
 app.use(bodyParser.json());
+app.use(bodyParser.raw());
+app.use(bodyParser.text());
 app.use(bodyParser.urlencoded({extended: false}));
+// app.use(bodyParser.assign());
 app.use(cookieParser());
 let options = { // 解决静态资源跨域问题（或者使用cors模块）
     setHeaders: function (res, path, stat) {
@@ -60,6 +63,10 @@ app.use('^/touch*', proxy({ // 配置代理转发
 }));
 
 app.use('/v*', (req, res, next) => {
+    console.log("app.use~~~~~~~~~~~~\n" + req);
+    console.log(req.rawHeaders);
+    console.log("body===============\n" + req.body);
+    console.log(req.session);
     if (req.session.login) {
         next();
     } else {
@@ -72,11 +79,14 @@ app.use('/v*', (req, res, next) => {
         }
     }
 });
+
+// app.post('/v/user/msg', user.msg);
+
 app.use('/v/api', api);
 app.use('/v/user', user);
 app.use('/v/group', group);
 app.use('/v/friend', friend);
-app.use('/v/expre', expression);
+app.use('/v/express', expression);
 app.use('/v/mes', messages);
 app.use('/v/todo', todo);
 
@@ -88,7 +98,7 @@ app.get('/', (req, res) => {
 // socket.to(val.roomid).emit('joined', OnlineUser); // 不包括发送者
 const OnlineUser = {};
 const apiList = require('./controller/apiList');
-const onconnection = (socket) => {
+const onConnection = (socket) => {
     console.log('启动了Socket.io');
 
     socket.on('join', (val) => {
@@ -296,11 +306,12 @@ const onconnection = (socket) => {
         console.log('user disconnected', OnlineUser);
     });
 };
-io.on('connection', onconnection);
+io.on('connection', onConnection);
 
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
+    console.log(req.body);
     let err = new Error('Not Found');
     err.status = 404;
     next(err);

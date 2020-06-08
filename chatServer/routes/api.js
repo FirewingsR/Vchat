@@ -5,9 +5,9 @@ let express = require('express');
 let router = express.Router();
 
 // const multer=require('multer'); // 文件上传 第一种上传方案所需
-const fs=require('fs');
-const os=require('os');
-const path=require("path");
+const fs = require('fs');
+const os = require('os');
+const path = require("path");
 // let upload = multer({dest: './public/uploads/'}); // os.tmpdir() 跨磁盘有权限问题 第一种上传方案所需
 const uploads = require('../utils/upload'); // 上传js
 const utils = require('../utils/utils');

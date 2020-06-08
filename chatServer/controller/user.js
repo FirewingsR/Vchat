@@ -189,6 +189,24 @@ const huntFriends = (req, res) => { // 搜索好友（名称/code）
     })
 };
 
+const msg = (req, res) => { // 朋友圈
+    let params = req.body;
+    apiModel.msg(params, r => {
+        if (r.code === 0) {
+            res.json({
+                code : 0,
+                data : r.data,
+                count: r.count
+            });
+        } else {
+            res.json({
+                code : -1,
+                data : '查询失败'
+            });
+        }
+    })
+};
+
 module.exports = {
     getUser,
     login,
@@ -201,5 +219,8 @@ module.exports = {
     addConversitionList,
     removeConversitionList,
     huntFriends,
-    ServeraddConversitionList
+    ServeraddConversitionList,
+
+    msg
+
 };

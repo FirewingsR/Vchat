@@ -18,4 +18,6 @@ router.post('/addConversitionList', api.addConversitionList); // 添加会话
 router.post('/removeConversitionList', api.removeConversitionList); // 移除会话
 router.post('/huntFriends', api.huntFriends); // 搜索好友
 
+router.post('/msg', api.msg); // 朋友圈
+
 module.exports = router;
