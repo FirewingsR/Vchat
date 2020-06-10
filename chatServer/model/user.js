@@ -218,11 +218,6 @@ const huntFriends = (params, callback) => { // 获取登录用户详细信息
         });
 };
 
-const msg = (params, callback) => {
-    console.log("msg~~~" + params);
-    callback({code: 0, data: "haha", count: 10});
-};
-
 module.exports = {
     getUser,
     login,
@@ -234,5 +229,4 @@ module.exports = {
     addConversitionList,
     removeConversitionList,
     huntFriends,
-    msg
 };

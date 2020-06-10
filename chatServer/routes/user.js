@@ -19,5 +19,6 @@ router.post('/removeConversitionList', api.removeConversitionList); // 移除会
 router.post('/huntFriends', api.huntFriends); // 搜索好友
 
 router.post('/msg', api.msg); // 朋友圈
+router.get('/msg/queryAll', api.queryAll); // 朋友圈
 
 module.exports = router;

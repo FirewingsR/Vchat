@@ -189,21 +189,30 @@ const huntFriends = (req, res) => { // 搜索好友（名称/code）
     })
 };
 
+let activity = require('../model/activity');
+
 const msg = (req, res) => { // 朋友圈
     let params = req.body;
-    apiModel.msg(params, r => {
+    activity.addActivity(params, r => {
         if (r.code === 0) {
             res.json({
                 code : 0,
                 data : r.data,
-                count: r.count
+                msg  : "发布成功"
             });
         } else {
             res.json({
                 code : -1,
-                data : '查询失败'
+                msg : '发布失败'
             });
         }
+    })
+};
+
+const queryAll = (req, res) => { // 朋友圈
+    let params = req.query;
+    activity.queryAll(req.headers.host, params, r => {
+        res.json(r);
     })
 };
 
@@ -221,6 +230,7 @@ module.exports = {
     huntFriends,
     ServeraddConversitionList,
 
-    msg
+    msg,
+    queryAll
 
 };

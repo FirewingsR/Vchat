@@ -62,3 +62,12 @@
 * avatar 用户头像
 * mes 消息
 * read 是否已读 Array ['www', 'yyy']
+### activity 活动
+* id 
+* userId 用户id
+* content 活动内容
+* picUrls 图片链接
+
+{id: 198, userId: 2006051530130117, content: 123456, picUrls: http://we-chat-manager.oss-cn-beijing.aliyuncs.com/file/2006081943296600.png, createAt: 1591616668, updateAt: 1591616668, dr: 1, loveNumber: null, commentNumber: null, userName: Fire, userHeadUrl: https://assets-store-cdn.48lu.cn/assets-store/103fd8505699461da8abe28dc8221dec.jpg, userAutograph: Fire}
+
+{code: 0, data: null, msg: 成功}

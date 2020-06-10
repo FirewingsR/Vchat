@@ -63,10 +63,10 @@ app.use('^/touch*', proxy({ // 配置代理转发
 }));
 
 app.use('/v*', (req, res, next) => {
-    console.log("app.use~~~~~~~~~~~~\n" + req);
-    console.log(req.rawHeaders);
-    console.log("body===============\n" + req.body);
-    console.log(req.session);
+    if (req.baseUrl.startsWith('/v/user/msg')) {
+        next();
+        return;
+    }
     if (req.session.login) {
         next();
     } else {
@@ -328,6 +328,8 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
+
+
 server.listen(9988, () => {
-    console.log('服务器在9988启动')
+    console.log('服务器在9988启动');
 });
